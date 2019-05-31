@@ -40,10 +40,10 @@ namespace ODataTest
             }
 
             var modelBuilder = new ODataConventionModelBuilder(serviceProvider);
-            var entitySet = modelBuilder.EntitySet<Book>(BooksController.BookPrefix);
+            var entitySet = modelBuilder.EntitySet<Book>(BookController.BookPrefix);
             var entityType = entitySet.EntityType;
             entityType.HasKey(x => x.ISBN);
-            entityType.Collection.Function(nameof(BooksController.Search)).ReturnsCollectionFromEntitySet<Book>(BooksController.BookPrefix).Parameter<string>("prefix").Required();
+            entityType.Collection.Function(nameof(BookController.Search)).ReturnsCollectionFromEntitySet<Book>(BookController.BookPrefix).Parameter<string>("prefix").Required();
 
 
 
@@ -66,8 +66,8 @@ namespace ODataTest
 
 namespace ODataTest.Controllers
 {
-    [ODataRoutePrefix(BooksController.BookPrefix)]
-    public class BooksController : ODataController
+    [ODataRoutePrefix(BookController.BookPrefix)]
+    public class BookController : ODataController
     {
         public const string BookPrefix = "Books";
         public List<Book> books = new List<Book>()
